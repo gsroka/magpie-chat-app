@@ -76,7 +76,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 -   [X] Initialize a project using `create-t3-app`.
 -   [X] Install and configure libraries: `shadcn/ui`, `@ai-sdk`, and `lucide-react`.
 -   [X] Set up the initial Git repository, and create a `README.md` file with a project description and setup instructions.
--   [ ] Configure environment variables (`.env.local`) for the language model API key.
+-   [X] Configure environment variables (`.env`) for the language model API key.
 
 #### Phase 1: Architecture, Routing & Typing
 -   [ ] Create the base application folder structure (e.g., `_components`, `_lib`, `_actions`).
