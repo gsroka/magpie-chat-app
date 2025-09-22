@@ -18,13 +18,16 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { MessageSquareIcon, UserIcon } from "lucide-react";
+import { LogOutIcon, MessageSquareIcon, UserIcon } from "lucide-react";
+import { useAuth } from "@/app/_context/AuthContext";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 /**
  * Renders the main sidebar with navigation and a user menu at the bottom.
  */
 export function Sidebar() {
   const pathname = usePathname();
+  const { user, logout } = useAuth();
 
   return (
     <aside className="border-sidebar-border bg-sidebar text-sidebar-foreground inset-y-0 left-0 z-10 hidden w-14 flex-col border-r sm:flex">
@@ -96,18 +99,27 @@ export function Sidebar() {
               size="icon"
               className="h-9 w-9 overflow-hidden rounded-full"
             >
-              Avatar
+              <Avatar className="h-9 w-9">
+                <AvatarImage
+                  src={user?.avatarUrl}
+                  alt={user?.name ?? "User Avatar"}
+                />
+                <AvatarFallback>
+                  {"User"}
+                </AvatarFallback>
+              </Avatar>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent side="right" align="end">
-            <DropdownMenuLabel>todo</DropdownMenuLabel>
+            <DropdownMenuLabel>{user?.name}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
               <Link href="/profile">Profile</Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem asChild>
-              <Link href="/">Logout</Link>
+            <DropdownMenuItem onClick={logout}>
+              <LogOutIcon className="mr-2 h-4 w-4" />
+              <span>Logout</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
           </DropdownMenuContent>

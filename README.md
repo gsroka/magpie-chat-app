@@ -93,10 +93,10 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 
 #### Phase 2: Mocked Authentication (with Server Actions)
 
-- [ ] Create the login form on the `/login` page using `shadcn/ui` components.
-- [ ] Implement `login` and `logout` logic.
-- [ ] Use **React Context** (`AuthContext` + `AuthProvider`) for client-side session state management (storing the logged-in user object).
-- [ ] Secure routes within the `(authorized)` group.
+- [x] Create the login form on the `/login` page using `shadcn/ui` components.
+- [x] Implement `login` and `logout` logic.
+- [x] Use **React Context** (`AuthContext` + `AuthProvider`) for client-side session state management (storing the logged-in user object).
+- [x] Secure routes within the `(authorized)` group.
 
 #### Phase 3: Core Chat Interface (Text Streaming)
 
@@ -129,3 +129,5 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 - [ ] Add concise **JSDoc** comments to key components and functions.
 - [ ] Perform manual testing of all functionalities across different browsers and screen sizes (RWD).
 - [ ] Ensure the Git history is clean and follows the **Conventional Commits** convention.
+- [ ] Add transitions and animations to the application.
+- [ ] Submit the project bundle file.
