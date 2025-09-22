@@ -79,10 +79,10 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 -   [X] Configure environment variables (`.env`) for the language model API key.
 
 #### Phase 1: Architecture, Routing & Typing
--   [ ] Create the base application folder structure (e.g., `_components`, `_lib`, `_actions`).
--   [ ] Define core application types in TypeScript (e.g., `User`, `Message`, `ChatMessage`).
--   [ ] Implement the root layout (`layout.tsx`) and the layout for authorized users in the `(authorized)` route group.
--   [ ] Create placeholder pages for `/login`, `/chat`, and `/profile`.
+-   [X] Create the base application folder structure (e.g., `_components`, `_lib`, `_actions`).
+-   [X] Define core application types in TypeScript (e.g., `User`, `Message`, `ChatMessage`).
+-   [X] Implement the root layout (`layout.tsx`) and the layout for authorized users in the `(authorized)` route group.
+-   [X] Create placeholder pages for `/login`, `/chat`, and `/profile`.
 -   [ ] Implement `loading.tsx`, `error.tsx`, and `not-found.tsx` files in key routing segments for better UX and error handling.
 -   [ ] Build shared navigation components (e.g., `Sidebar`, `Header`) and implement active menu state logic.
 
