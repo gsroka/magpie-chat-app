@@ -1,13 +1,81 @@
 # Magpie Chat App
 
----
+This is a web application built with Next.js and the Vercel AI SDK. The application features mocked authentication, a real-time streaming chat interface with an AI model, file/image attachment capabilities, and user profile management.
+
+
+***
+
+### ✨ Features
+
+* **Mocked Authentication:** Login flow using hardcoded credentials.
+* **Real-time AI Chat:** A clean chat interface with real-time message streaming from a large language model.
+* **File & Image Support:** Attach images to your messages and get responses from a vision-enabled AI model.
+* **Profile Management:** View and edit your user profile name, with changes saved locally.
+* **Responsive Design:** Fully responsive UI that works on all screen sizes.
+
+***
+
+### 🛠️ Tech Stack
+
+* **Framework:** Next.js 15 & React 19
+* **Language:** TypeScript
+* **Styling:** Tailwind CSS v4 & shadcn/ui
+* **Icons:** Lucide React
+* **AI Integration:** Vercel AI SDK
+* **State Management:** React Context & React Hooks
+* **Environment Variables:** T3 Env & Zod
+* **Tooling:** ESLint, Prettier, PNPM
+
+***
+
+### 🚀 Getting Started
+
+Follow these instructions to set up and run the project locally.
+
+#### 1. Prerequisites
+
+* Node.js (v20+)
+* pnpm
+
+#### 2. Installation & Setup
+
+1.  **Clone the repository from the bundle file:**
+    ```bash
+    git clone ai-chat-app.bundle ai-chat-app
+    cd ai-chat-app
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    pnpm install
+    ```
+
+3.  **Set up environment variables:**
+    Create a `.env` file in the root of the project and add your AI provider API key:
+    ```env
+    # Example for Anthropic
+    ANTHROPIC_API_KEY="your_api_key_here"
+    ```
+
+4.  **Run the development server:**
+    ```bash
+    pnpm run dev
+    ```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+
+**Login Credentials:**
+* **Email:** `test@example.com`
+* **Password:** `password123`
+
+***
 
 ### ✅ Project TODO Checklist
 
 #### Phase 0: Project Setup & Configuration
 -   [X] Initialize a project using `create-t3-app`.
 -   [X] Install and configure libraries: `shadcn/ui`, `@ai-sdk`, and `lucide-react`.
--   [ ] Set up the initial Git repository, and create a `README.md` file with a project description and setup instructions.
+-   [X] Set up the initial Git repository, and create a `README.md` file with a project description and setup instructions.
 -   [ ] Configure environment variables (`.env.local`) for the language model API key.
 
 #### Phase 1: Architecture, Routing & Typing
