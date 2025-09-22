@@ -89,7 +89,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 - [x] Implement the root layout (`layout.tsx`) and the layout for authorized users in the `(authorized)` route group.
 - [x] Create placeholder pages for `/login`, `/chat`, and `/profile`.
 - [x] Implement `loading.tsx`, `error.tsx`, and `not-found.tsx` files in key routing segments for better UX and error handling.
-- [ ] Build shared navigation components (e.g., `Sidebar`, `Header`) and implement active menu state logic.
+- [x] Build shared navigation components (e.g., `Sidebar`) and implement active menu state logic.
 
 #### Phase 2: Mocked Authentication (with Server Actions)
 
