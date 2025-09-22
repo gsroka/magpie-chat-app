@@ -1,3 +1,5 @@
 export default function ChatPage() {
-  return <div>ChatPage</div>
+  // @todo Remove later
+  // throw new Error("Error test");
+  return <div>ChatPage</div>;
 }
