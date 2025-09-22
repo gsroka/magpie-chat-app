@@ -6,7 +6,7 @@
 
 #### Phase 0: Project Setup & Configuration
 -   [X] Initialize a project using `create-t3-app`.
--   [ ] Install and configure libraries: `shadcn/ui`, `@ai-sdk`, and `lucide-react`.
+-   [X] Install and configure libraries: `shadcn/ui`, `@ai-sdk`, and `lucide-react`.
 -   [ ] Set up the initial Git repository, and create a `README.md` file with a project description and setup instructions.
 -   [ ] Configure environment variables (`.env.local`) for the language model API key.
 
