@@ -178,10 +178,10 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 
 - [x] **Enhanced File Support:**
   - [x] Implement PDF file support in the chat.
-- [ ] **Improved User Experience (UX):**
+- [x] **Improved User Experience (UX):**
   - [x] Implement error display system using toasts for API communication errors.
   - [x] Display a "Hello!" welcome message on the chat page when there are no messages.
-  - [ ] Improve the loading spinner for a more polished and modern feel.
+  - [x] Improve the loading spinner for a more polished and modern feel.
 - [ ] **UI & Responsiveness:**
   - [x] Implement a collapsible sidebar with a toggle icon for better mobile and tablet support.
   - [ ] Polish the UI and add responsive design for better user experience on mobile devices.

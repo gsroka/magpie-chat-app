@@ -7,7 +7,7 @@ export default function Spinner() {
     <div
       role="status"
       aria-label="Loading"
-      className="fixed inset-0 flex items-center justify-center z-50 bg-transparent"
+      className="flex min-h-screen items-center justify-center"
     >
       <div className="border-primary h-16 w-16 animate-spin rounded-full border-4 border-dashed"></div>
     </div>
