@@ -128,9 +128,9 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
   - [ ] Display a "Hello!" welcome message on the chat page when there are no messages.
   - [ ] Improve the loading spinner for a more polished and modern feel.
 - [ ] **UI & Responsiveness:**
-  - [ ] Implement a collapsible sidebar with a toggle icon for better mobile and tablet support.
+  - [x] Implement a collapsible sidebar with a toggle icon for better mobile and tablet support.
   - [ ] Polish the UI and add responsive design for better user experience on mobile devices.
-  - [ ] toast notifications text color should be consistent with the rest of the UI.
+  - [ ] toast notifications description text color should be consistent with the rest of the UI.
 - [ ] **Expanded Profile Management:**
   - [ ] Add functionality to change the user's avatar and email address.
 - [ ] **Code Refactoring & Optimization:**

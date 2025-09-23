@@ -65,7 +65,7 @@ export function MessageBubble({ message }: { message: UIMessage }) {
             src={user?.avatarUrl}
             alt={user?.name ?? "User Avatar"}
           />
-          <AvatarFallback>User</AvatarFallback>
+          <AvatarFallback>{user?.name?.charAt(0) ?? "U"}</AvatarFallback>
         </Avatar>
       )}
     </div>
