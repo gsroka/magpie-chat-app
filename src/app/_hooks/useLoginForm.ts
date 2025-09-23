@@ -9,8 +9,8 @@ import { useAuth } from "@/app/_context/AuthContext";
  * @returns An object with state and handlers for the login page.
  */
 export function useLoginForm() {
-  const [email, setEmail] = useState("test@example.com");
-  const [password, setPassword] = useState("password123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,7 +33,6 @@ export function useLoginForm() {
     setIsLoading(true);
     try {
       await login(email, password);
-      // The useEffect above will handle the redirect on successful login
     } catch (error) {
       setError("Invalid email or password. Please try again.");
     } finally {

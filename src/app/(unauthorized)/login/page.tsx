@@ -13,6 +13,10 @@ import { Label } from "@/components/ui/label";
 import Spinner from "@/app/_components/layout/spinner";
 import { useLoginForm } from "@/app/_hooks/useLoginForm";
 
+/**
+ * Login page for the application.
+ * @constructor
+ */
 export default function LoginPage() {
   const {
     email,
@@ -25,7 +29,6 @@ export default function LoginPage() {
     handleLogin,
   } = useLoginForm();
 
-  // Show a full-screen spinner while checking auth, logging in, or redirecting.
   if (isAuthenticating || isLoading) {
     return <Spinner />;
   }
@@ -46,7 +49,7 @@ export default function LoginPage() {
               <Input
                 id="email"
                 type="email"
-                placeholder="email@example.com"
+                placeholder="test@example.com"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -57,6 +60,7 @@ export default function LoginPage() {
               <Input
                 id="password"
                 type="password"
+                placeholder="••••••••"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

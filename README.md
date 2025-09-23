@@ -27,6 +27,61 @@ This is a web application built with Next.js and the Vercel AI SDK. The applicat
 
 ---
 
+### 📁 Project Structure
+
+```text
+magpie-chat-app/
+├── src/
+│   ├── app/                # Next.js App Router
+│   │   ├── (authorized)/   # Protected routes group
+│   │   │   ├── chat/       # Chat interface page
+│   │   │   └── profile/    # User profile page
+│   │   ├── (unauthorized)/ # Client routes group
+│   │   │   └── login/      # Login page
+│   │   ├── api/            # API route handlers
+│   │   │   └── chat/       # AI chat endpoint
+│   ├── _actions/           # Server actions
+│   │   └── auth.ts         # Authentication
+│   ├── _components/        # Feature-specific components
+│   │   ├── chat/
+│   │   ├── layout/
+│   │   └── profile/
+│   ├── _config/            # Application configuration files
+│   │   └── nav.config.ts
+│   ├── _context/           # React Context providers
+│   │   └── AuthContext.tsx
+│   ├── _hooks/             # Custom React hooks
+│   │   ├── useChatHandler.tsx
+│   │   ├── useLoginForm.ts
+│   │   └── ...
+│   ├── _types/             # TypeScript type definitions
+│   │   └── index.ts
+│   ├── _utils/             # Utility functions
+│   │   └── files.ts
+│   ├── components/         # Reusable UI components
+│   │   └── ui/             # shadcn/ui components
+│   ├── lib/                # Utility functions & configurations
+│   │   ├── auth.ts         # Authentication logic
+│   │   ├── types.ts        # TypeScript type definitions
+│   │   └── utils.ts        # General utilities
+│   ├── styles/             # Additional stylesheets
+│   │   └── globals.css     # Global styles
+│   └── env.js              # Environment validation (T3 Env)
+├── public/                 # Static assets
+├── .env                    # Environment variables
+└── Configuration files     # Next.js, TypeScript, ESLint, etc.
+```
+
+**Key Folders:**
+
+- **`src/app/`**: Next.js 15 App Router with file-based routing
+- **`src/app/(authorized)/`**: Protected route group requiring authentication
+- **`src/components/`**: Reusable React components and shadcn/ui elements
+- **`src/lib/`**: Business logic, utilities, and type definitions
+- **`public/`**: Static assets (images, icons, etc.)
+
+---
+
 ### 🚀 Getting Started
 
 Follow these instructions to set up and run the project locally.
@@ -124,7 +179,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 - [x] **Enhanced File Support:**
   - [x] Implement PDF file support in the chat.
 - [ ] **Improved User Experience (UX):**
-  - [ ] Implement a better error display system (e.g., using toasts) for API communication errors.
+  - [x] Implement error display system using toasts for API communication errors.
   - [x] Display a "Hello!" welcome message on the chat page when there are no messages.
   - [ ] Improve the loading spinner for a more polished and modern feel.
 - [ ] **UI & Responsiveness:**
@@ -136,6 +191,20 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 - [ ] **Code Refactoring & Optimization:**
   - [ ] Refactor components to better leverage React Server Components (RSC), minimizing client-side logic.
   - [ ] Identify and abstract shared logic into reusable components to adhere to the DRY principle.
+- [x] **Code Refactoring & Optimization:**
+- [x] **Fixed Critical Security Issues:**
+  - [x] Moved authentication validation from client to server-side
+  - [x] Removed hardcoded credentials from client-visible code
+  - [x] Implemented secure session management with HTTP-only cookies
+- [x] **Fixed Architecture Violations:**
+  - [x] Converted authorized layout to Server Component
+  - [x] Removed unnecessary "use client" from layout components
+  - [x] Implemented proper server-side auth checks
+- [x] **Fixed State Management:**
+  - [x] Eliminated redundant state storage between localStorage and Context
+  - [x] Implemented single source of truth for user data
+  - [x] Simplified profile update logic
+- [ ] Identify and abstract more shared logic into reusable components to adhere to the DRY principle.
 
 #### Phase 7: Finalization & Submission
 
@@ -149,13 +218,15 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 #### Phase 8: Advanced UX & Chat Utilities
 
 - [ ] **Chat Management:**
-    - [ ] Implement a "Start New Chat" button to clear the current conversation.
+  - [ ] Implement a "Start New Chat" button to clear the current conversation.
 - [ ] **Message Interaction & Formatting:**
-    - [ ] Add a "Copy" button to each message bubble for easy content copying.
-    - [ ] Implement syntax highlighting for code blocks within AI responses.
-    - [ ] Create a response navigation map/button to allow jumping between AI-generated answers in long conversations.
+  - [ ] Add a "Copy" button to each message bubble for easy content copying.
+  - [ ] Implement syntax highlighting for code blocks within AI responses.
+  - [ ] Create a response navigation map/button to allow jumping between AI-generated answers in long conversations.
 - [ ] **Error Handling:**
-    - [ ] Enhance the root error boundary (`error.tsx`) to provide a "Refresh Page" option on application crash.
+  - [ ] Enhance the root error boundary (`error.tsx`) to provide a "Refresh Page" option on application crash.
+- [ ] Add memoization to the chat handler to improve performance.
+- [ ] Add more comprehensive error boundaries.
 
 #### Optional Features
 

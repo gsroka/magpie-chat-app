@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { useRouter } from "next/navigation";
+import { loginAction, logoutAction, getSession } from "@/app/_actions/auth";
 import type { User } from "@/app/_types";
 
 /**
@@ -19,7 +20,7 @@ interface AuthContextType {
   isInitialized: boolean;
   updateUser: (userData: Partial<User>) => void;
   login: (email: string, password: string) => Promise<void>;
-  logout: () => void;
+  logout: () => Promise<void>;
 }
 
 /**
@@ -54,43 +55,55 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
 
   useEffect(() => {
-    try {
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
+    void (async () => {
+      try {
+        const { user } = await getSession();
+        if (user) {
+          const storedProfile = localStorage.getItem("user-profile");
+          if (storedProfile) {
+            const profile = JSON.parse(storedProfile) as Partial<User>;
+            setUser({ ...user, ...profile, email: user.email });
+          } else {
+            setUser({ ...user, avatarUrl: "https://github.com/shadcn.png" });
+          }
+        }
+      } catch (error) {
+        console.error("Failed to get session:", error);
+      } finally {
+        setInitialized(true);
       }
-    } catch (error) {
-      console.error("Failed to parse user from localStorage", error);
-    } finally {
-      setInitialized(true);
-    }
+    })();
   }, []);
 
   const updateUser = (userData: Partial<User>) => {
     setUser((prevUser) => {
-      const newUser = { ...prevUser, ...userData } as User;
-      localStorage.setItem("user", JSON.stringify(newUser));
+      if (!prevUser) return null;
+      const newUser = { ...prevUser, ...userData };
+      localStorage.setItem("user-profile", JSON.stringify({
+        name: newUser.name,
+        avatarUrl: newUser.avatarUrl
+      }));
       return newUser;
     });
   };
   const login = async (email: string, password: string): Promise<void> => {
-    if (email === "test@example.com" && password === "password123") {
+    const result = await loginAction(email, password);
+    if (result.success && result.user) {
       const userData: User = {
-        name: "Test User",
-        email: "test@example.com",
+        ...result.user,
         avatarUrl: "https://github.com/shadcn.png",
       };
       setUser(userData);
-      localStorage.setItem("user", JSON.stringify(userData));
       router.push("/chat");
     } else {
-      throw new Error("Invalid credentials");
+      throw new Error(result.error ?? "Login failed");
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await logoutAction();
     setUser(null);
-    localStorage.removeItem("user");
+    localStorage.removeItem("user-profile");
     router.push("/login");
   };
 
