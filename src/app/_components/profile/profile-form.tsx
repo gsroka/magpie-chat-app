@@ -33,9 +33,9 @@ export function ProfileForm() {
   };
 
   return (
-    <Card className="max-w-xl">
+    <Card className="mx-auto max-w-sm">
       <CardHeader>
-        <CardTitle>Profile</CardTitle>
+        <CardTitle className="text-2xl">Profile</CardTitle>
         <CardDescription>
           Manage your account settings. Changes are saved locally.
         </CardDescription>
@@ -60,7 +60,7 @@ export function ProfileForm() {
               disabled
             />
           </div>
-          <Button type="submit">Save Changes</Button>
+          <Button type="submit" className="w-full">Save Changes</Button>
         </form>
       </CardContent>
     </Card>

@@ -114,11 +114,11 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
   - [x] Extend the `MessageInput` component to support file (image) selection and display its preview.
   - [x] Implement client-side logic for converting the image to Base64 format.
   - [x] Update the API Route Handler (`/api/chat`) to handle multimodal messages (text + image).
-- [ ] **Profile Management:**
-  - [ ] Build the UI for the `/profile` page with a form for editing user data.
+- [x] **Profile Management:**
+  - [x] Build the UI for the `/profile` page with a form for editing user data.
   - [ ] Use a Server Action to handle saving profile changes.
-  - [ ] Implement persistence of profile data in `localStorage` so that changes are saved locally.
-  - [ ] Ensure that profile changes are reactively reflected in other parts of the UI (e.g., in the `Header`).
+  - [x] Implement persistence of profile data in `localStorage` so that changes are saved locally.
+  - [x] Ensure that profile changes are reactively reflected in other parts of the UI (e.g., in the `Header`).
 
 #### Phase 5: Optional Features
 
