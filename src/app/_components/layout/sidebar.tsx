@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { LogOutIcon, MessageSquareIcon, UserIcon } from "lucide-react";
 import { useAuth } from "@/app/_context/AuthContext";
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 /**
  * Renders the main sidebar with navigation and a user menu at the bottom.
@@ -90,23 +90,20 @@ export function Sidebar() {
         </TooltipProvider>
       </nav>
 
-      {/* @TODO: User Menu */}
       <nav className="mt-auto flex flex-col items-center gap-4 px-2 py-5">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
               size="icon"
-              className="h-9 w-9 overflow-hidden rounded-full"
+              className="h-9 w-9 cursor-pointer overflow-hidden rounded-full"
             >
               <Avatar className="h-9 w-9">
                 <AvatarImage
                   src={user?.avatarUrl}
                   alt={user?.name ?? "User Avatar"}
                 />
-                <AvatarFallback>
-                  User
-                </AvatarFallback>
+                <AvatarFallback>User</AvatarFallback>
               </Avatar>
             </Button>
           </DropdownMenuTrigger>

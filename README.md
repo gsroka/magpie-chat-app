@@ -116,15 +116,27 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
   - [x] Update the API Route Handler (`/api/chat`) to handle multimodal messages (text + image).
 - [x] **Profile Management:**
   - [x] Build the UI for the `/profile` page with a form for editing user data.
-  - [ ] Use a Server Action to handle saving profile changes.
   - [x] Implement persistence of profile data in `localStorage` so that changes are saved locally.
   - [x] Ensure that profile changes are reactively reflected in other parts of the UI (e.g., in the `Header`).
 
-#### Phase 5: Optional Features
+#### Phase 6: Refinements & Feature Expansion
 
-- [ ] **[Optional] Speech-to-Text:** Implement message dictation functionality using the Web Speech API.
+- [ ] **Enhanced File Support:**
+  - [ ] Implement PDF file support in the chat.
+  - [ ] Add a fallback icon for unrecognized file types attached to messages.
+- [ ] **Improved User Experience (UX):**
+  - [ ] Implement a better error display system (e.g., using toasts) for API communication errors.
+  - [ ] Display a "Hello!" welcome message on the chat page when there are no messages.
+  - [ ] Improve the loading spinner for a more polished and modern feel.
+- [ ] **UI & Responsiveness:**
+  - [ ] Implement a collapsible sidebar with a toggle icon for better mobile and tablet support.
+- [ ] **Expanded Profile Management:**
+  - [ ] Add functionality to change the user's avatar and email address.
+- [ ] **Code Refactoring & Optimization:**
+  - [ ] Refactor components to better leverage React Server Components (RSC), minimizing client-side logic.
+  - [ ] Identify and abstract shared logic into reusable components to adhere to the DRY principle.
 
-#### Phase 6: Finalization & Submission
+#### Phase 7: Finalization & Submission
 
 - [ ] Conduct a full code review for **SOLID, DRY, KISS** principles, and **accessibility (a11y)**.
 - [ ] Add concise **JSDoc** comments to key components and functions.
@@ -132,3 +144,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 - [ ] Ensure the Git history is clean and follows the **Conventional Commits** convention.
 - [ ] Add transitions and animations to the application.
 - [ ] Submit the project bundle file.
+
+#### Optional Features
+
+- [ ] **[Optional] Speech-to-Text:** Implement message dictation functionality using the Web Speech API.
