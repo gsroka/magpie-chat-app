@@ -33,7 +33,7 @@ export default function LoginPage() {
     setError("");
     try {
       await login(email, password);
-    } catch (err) {
+    } catch (error) {
       setError("Invalid email or password. Please try again.");
     }
   };

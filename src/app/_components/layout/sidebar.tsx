@@ -105,7 +105,7 @@ export function Sidebar() {
                   alt={user?.name ?? "User Avatar"}
                 />
                 <AvatarFallback>
-                  {"User"}
+                  User
                 </AvatarFallback>
               </Avatar>
             </Button>

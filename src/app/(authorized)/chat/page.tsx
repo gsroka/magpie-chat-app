@@ -1,5 +1,9 @@
+import { ChatArea } from "@/app/_components/chat/chat-area";
+
+/**
+ * The main chat page.
+ * @constructor
+ */
 export default function ChatPage() {
-  // @todo Remove later
-  // throw new Error("Error test");
-  return <div>ChatPage</div>;
+  return <ChatArea />;
 }

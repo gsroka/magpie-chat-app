@@ -100,19 +100,20 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 
 #### Phase 3: Core Chat Interface (Text Streaming)
 
-- [ ] Create an API Route Handler (`/api/chat/route.ts`) to handle communication with the Vercel AI SDK.
-- [ ] Build the chat interface components: `ChatArea`, `MessageList`, `MessageInput`.
-- [ ] Integrate the `useChat` hook from the `@ai-sdk` library to manage chat state, send messages, and handle response streaming.
-- [ ] Implement loading indicators while the AI is generating a response.
-- [ ] Style the interface and add auto-scrolling functionality to the latest message.
-- [ ] Fix any potential type conversion errors between `UIMessage` and the AI SDK's `Message` during development.
+- [x] Create an API Route Handler (`/api/chat/route.ts`) to handle communication with the Vercel AI SDK.
+- [x] Build the chat interface components: `ChatArea`, `MessageList`, `MessageInput`.
+- [x] Integrate the `useChat` hook from the `@ai-sdk` library to manage chat state, send messages, and handle response streaming.
+- [x] Implement loading indicators while the AI is generating a response.
+- [x] Style the interface and add auto-scrolling functionality to the latest message.
+- [x] Chat area position should be fixed at the bottom of the screen.
+- [x] Fix any potential type conversion errors between `UIMessage` and the AI SDK's `Message` during development.
 
 #### Phase 4: Advanced Features (Files & Profile)
 
-- [ ] **Multimodal Chat:**
-  - [ ] Extend the `MessageInput` component to support file (image) selection and display its preview.
-  - [ ] Implement client-side logic for converting the image to Base64 format.
-  - [ ] Update the API Route Handler (`/api/chat`) to handle multimodal messages (text + image).
+- [x] **Multimodal Chat:**
+  - [x] Extend the `MessageInput` component to support file (image) selection and display its preview.
+  - [x] Implement client-side logic for converting the image to Base64 format.
+  - [x] Update the API Route Handler (`/api/chat`) to handle multimodal messages (text + image).
 - [ ] **Profile Management:**
   - [ ] Build the UI for the `/profile` page with a form for editing user data.
   - [ ] Use a Server Action to handle saving profile changes.
