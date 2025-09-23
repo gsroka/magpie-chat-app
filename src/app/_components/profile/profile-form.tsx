@@ -1,8 +1,5 @@
 "use client";
 
-import { useAuth } from "@/app/_context/AuthContext";
-import { useLocalStorageState } from "@/app/_hooks/useLocalStorageState";
-import type { User } from "@/app/_types";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,56 +10,44 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { toast } from "sonner";
+import { useProfileForm } from "@/app/_hooks/useProfileForm";
 
 /**
  * A form for viewing and editing user profile information.
- * Changes are persisted to localStorage.
+ * Logic is handled by the useProfileForm hook.
  */
 export function ProfileForm() {
-  const { user, updateUser } = useAuth();
-  const [profile, setProfile] = useLocalStorageState<Partial<User>>(
-    "user-profile",
-    { name: user?.name, email: user?.email },
-  );
-
-  const handleSave = (e: React.FormEvent) => {
-    e.preventDefault();
-    updateUser(profile);
-    toast("Profile saved!");
-  };
+  const { name, email, setName, handleSave } = useProfileForm();
 
   return (
-    <Card className="mx-auto max-w-sm">
-      <CardHeader>
-        <CardTitle className="text-2xl">Profile</CardTitle>
-        <CardDescription>
-          Manage your account settings. Changes are saved locally.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSave} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
-            <Input
-              id="name"
-              value={profile.name ?? ""}
-              onChange={(e) => setProfile({ ...profile, name: e.target.value })}
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              value={profile.email ?? ""}
-              readOnly
-              disabled
-            />
-          </div>
-          <Button type="submit" className="w-full">Save Changes</Button>
-        </form>
-      </CardContent>
-    </Card>
+    <div className="flex h-screen flex-col items-center justify-center space-y-4 px-4 text-center">
+      <Card className="mx-auto max-w-sm">
+        <CardHeader>
+          <CardTitle className="text-2xl">Profile</CardTitle>
+          <CardDescription>
+            Manage your account settings. Changes are saved locally.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSave} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Name</Label>
+              <Input
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" type="email" value={email} readOnly disabled />
+            </div>
+            <Button type="submit" className="w-full">
+              Save Changes
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
