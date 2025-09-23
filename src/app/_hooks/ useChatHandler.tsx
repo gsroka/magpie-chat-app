@@ -63,6 +63,9 @@ export function useChatHandler() {
 
   /**
    * Constructs the message parts array from text and file attachments.
+   * @param text - The text input from the user.
+   * @param file - The file attached by the user.
+   * @returns A promise that resolves to an array of message parts.
    */
   const buildMessageParts = async (text: string, file: File | null) => {
     const parts = [];
@@ -81,7 +84,8 @@ export function useChatHandler() {
   };
 
   /**
-   * Handles the selection of a new file attachment.
+   * Handles errors that occur during message submission.
+   * @param error - The error object.
    */
   const handleSubmissionError = (error: unknown) => {
     const message =
@@ -91,8 +95,8 @@ export function useChatHandler() {
   };
 
   /**
-   * Handles the change of the file input.
-   * @param e
+   * Handles the change event of the file input.
+   * @param e - The change event object.
    */
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] ?? null;
@@ -101,12 +105,17 @@ export function useChatHandler() {
     }
     if (file) {
       setAttachment(file);
-      setAttachmentPreview(URL.createObjectURL(file));
+      if (file.type.startsWith("image/")) {
+        setAttachmentPreview(URL.createObjectURL(file));
+      } else {
+        setAttachmentPreview(null); // No preview for non-image files
+      }
     }
   };
 
   /**
    * Handles the form submission for sending a message.
+   * @param e - The form or keyboard event.
    */
   const handleFormSubmit = async (
     e: FormEvent<HTMLFormElement> | React.KeyboardEvent<HTMLTextAreaElement>,
@@ -128,6 +137,7 @@ export function useChatHandler() {
     messages,
     isLoading: status === "streaming",
     input,
+    attachment,
     attachmentPreview,
     fileInputRef,
     handleInputChange: (e: ChangeEvent<HTMLTextAreaElement>) =>

@@ -121,9 +121,8 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 
 #### Phase 6: Refinements & Feature Expansion
 
-- [ ] **Enhanced File Support:**
-  - [ ] Implement PDF file support in the chat.
-  - [ ] Add a fallback icon for unrecognized file types attached to messages.
+- [x] **Enhanced File Support:**
+  - [x] Implement PDF file support in the chat.
 - [ ] **Improved User Experience (UX):**
   - [ ] Implement a better error display system (e.g., using toasts) for API communication errors.
   - [ ] Display a "Hello!" welcome message on the chat page when there are no messages.
@@ -146,6 +145,17 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 - [ ] Ensure the Git history is clean and follows the **Conventional Commits** convention.
 - [ ] Add transitions and animations to the application.
 - [ ] Submit the project bundle file.
+
+#### Phase 8: Advanced UX & Chat Utilities
+
+- [ ] **Chat Management:**
+    - [ ] Implement a "Start New Chat" button to clear the current conversation.
+- [ ] **Message Interaction & Formatting:**
+    - [ ] Add a "Copy" button to each message bubble for easy content copying.
+    - [ ] Implement syntax highlighting for code blocks within AI responses.
+    - [ ] Create a response navigation map/button to allow jumping between AI-generated answers in long conversations.
+- [ ] **Error Handling:**
+    - [ ] Enhance the root error boundary (`error.tsx`) to provide a "Refresh Page" option on application crash.
 
 #### Optional Features
 

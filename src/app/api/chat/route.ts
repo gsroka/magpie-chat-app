@@ -4,18 +4,20 @@ import { streamText, convertToModelMessages, type UIMessage } from "ai";
 const MODEL_NAME = "claude-3-5-sonnet-20240620";
 const MAX_FILE_SIZE_MB = 5;
 const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
-const SUPPORTED_IMAGE_TYPES = new Set<string>([
+const SUPPORTED_FILE_TYPES = new Set<string>([
   "image/jpeg",
   "image/png",
   "image/gif",
   "image/webp",
+  "application/pdf",
 ]);
 
 /**
  * Creates a JSON response with an error message.
- * @param message
- * @param status
- * @param details
+ * @param message - The main error message.
+ * @param status - The HTTP status code.
+ * @param details - Optional details about the error.
+ * @returns A Response object.
  */
 function createErrorResponse(
   message: string,
@@ -33,8 +35,8 @@ function createErrorResponse(
 
 /**
  * Handles chat requests from the client.
- * @param req
- * @constructor
+ * @param req - The request object.
+ * @returns A streaming response with the model's output.
  */
 export async function POST(req: Request) {
   try {
@@ -50,9 +52,9 @@ export async function POST(req: Request) {
     for (const m of messages) {
       for (const part of m.parts ?? []) {
         if (part.type === "file") {
-          if (!part.mediaType || !SUPPORTED_IMAGE_TYPES.has(part.mediaType)) {
-            const supportedFormats = Array.from(SUPPORTED_IMAGE_TYPES)
-              .map((t) => t.replace("image/", "").toUpperCase())
+          if (!part.mediaType || !SUPPORTED_FILE_TYPES.has(part.mediaType)) {
+            const supportedFormats = Array.from(SUPPORTED_FILE_TYPES)
+              .map((t) => t.split("/")[1].toUpperCase())
               .join(", ");
             return createErrorResponse(
               "Unsupported File Type",
@@ -63,17 +65,17 @@ export async function POST(req: Request) {
 
           if (!part.url?.startsWith("data:")) {
             return createErrorResponse(
-              "Invalid Image Data",
+              "Invalid File Data",
               400,
-              "The image data URL is improperly formatted.",
+              "The file data URL is improperly formatted.",
             );
           }
           const base64 = part.url.split(",", 2)[1];
           if (!base64) {
             return createErrorResponse(
-              "Invalid Image Data",
+              "Invalid File Data",
               400,
-              "The image data URL is missing its content.",
+              "The file data URL is missing its content.",
             );
           }
 
@@ -81,9 +83,9 @@ export async function POST(req: Request) {
           if (sizeInBytes > MAX_FILE_SIZE_BYTES) {
             const sizeInMb = (sizeInBytes / 1024 / 1024).toFixed(1);
             return createErrorResponse(
-              "Image Too Large",
+              "File Too Large",
               400,
-              `The image size (${sizeInMb}MB) exceeds the maximum limit of ${MAX_FILE_SIZE_MB}MB.`,
+              `The file size (${sizeInMb}MB) exceeds the maximum limit of ${MAX_FILE_SIZE_MB}MB.`,
             );
           }
         }

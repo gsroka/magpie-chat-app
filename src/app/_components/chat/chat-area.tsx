@@ -3,20 +3,20 @@
 import { MessageList } from "./message-list";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Paperclip, SendHorizonal, X } from "lucide-react";
+import { FileText, Paperclip, SendHorizonal, X } from "lucide-react";
 import Image from "next/image";
 import { LoadingDots } from "@/app/_components/chat/loading-dots";
 import { useChatHandler } from "@/app/_hooks/ useChatHandler";
 
 /**
  * Renders the chat area with message list and input.
- * @constructor
  */
 export function ChatArea() {
   const {
     messages,
     isLoading,
     input,
+    attachment,
     attachmentPreview,
     fileInputRef,
     handleInputChange,
@@ -43,14 +43,23 @@ export function ChatArea() {
               onSubmit={(e) => void handleFormSubmit(e)}
               className="relative flex flex-col space-y-2"
             >
-              {attachmentPreview && (
-                <div className="relative h-24 w-24 overflow-hidden rounded-md border">
-                  <Image
-                    src={attachmentPreview}
-                    alt="Attachment preview"
-                    fill
-                    className="object-cover"
-                  />
+              {attachment && (
+                <div className="relative h-24 max-w-[250px] overflow-hidden rounded-md border p-2">
+                  {attachment.type.startsWith("image/") && attachmentPreview ? (
+                    <Image
+                      src={attachmentPreview}
+                      alt="Attachment preview"
+                      fill
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="flex h-full flex-col items-center justify-center gap-2 text-sm">
+                      <FileText className="h-8 w-8" />
+                      <span className="truncate px-2 text-center">
+                        {attachment.name}
+                      </span>
+                    </div>
+                  )}
                   <Button
                     type="button"
                     variant="ghost"
@@ -81,7 +90,7 @@ export function ChatArea() {
                   size="icon"
                   className="absolute bottom-2 left-2"
                   onClick={() => fileInputRef.current?.click()}
-                  aria-label="Attach image"
+                  aria-label="Attach file"
                 >
                   <Paperclip className="h-5 w-5" />
                 </Button>
@@ -90,13 +99,13 @@ export function ChatArea() {
                   ref={fileInputRef}
                   onChange={handleFileChange}
                   className="hidden"
-                  accept="image/*"
+                  accept="image/*,application/pdf"
                 />
                 <Button
                   type="submit"
                   size="icon"
                   className="absolute right-2 bottom-2"
-                  disabled={isLoading || (!input.trim() && !attachmentPreview)}
+                  disabled={isLoading || (!input.trim() && !attachment)}
                   aria-label="Send message"
                 >
                   <SendHorizonal className="h-4 w-4" />
