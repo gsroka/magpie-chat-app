@@ -3,7 +3,13 @@
 import { MessageList } from "./message-list";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { FileText, Paperclip, SendHorizonal, X } from "lucide-react";
+import {
+  FileText,
+  MessageSquareTextIcon,
+  Paperclip,
+  SendHorizonal,
+  X,
+} from "lucide-react";
 import Image from "next/image";
 import { LoadingDots } from "@/app/_components/layout/loading-dots";
 import { useChatHandler } from "@/app/_hooks/ useChatHandler";
@@ -25,10 +31,25 @@ export function ChatArea() {
     removeAttachment,
   } = useChatHandler();
 
+  const hasMessages = messages.length > 0;
+
   return (
     <div className="flex h-full w-full flex-col items-center">
       <div className="mx-auto w-full max-w-3xl flex-1">
-        <MessageList messages={messages} />
+        {hasMessages ? (
+          <MessageList messages={messages} />
+        ) : (
+          <div className="flex h-full flex-col items-center justify-center text-center">
+            <div className="bg-primary/10 text-primary mb-4 rounded-full p-3">
+              <MessageSquareTextIcon className="h-8 w-8" />
+            </div>
+            <h1 className="text-2xl font-semibold">Hello!</h1>
+            <p className="text-muted-foreground mt-2 max-w-sm">
+              Type a message in the box below to start a conversation. You can also
+              attach images or PDF files.
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="sticky bottom-0 z-10 mx-auto w-full max-w-3xl">
