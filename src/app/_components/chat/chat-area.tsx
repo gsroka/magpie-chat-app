@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { FileText, Paperclip, SendHorizonal, X } from "lucide-react";
 import Image from "next/image";
-import { LoadingDots } from "@/app/_components/chat/loading-dots";
+import { LoadingDots } from "@/app/_components/layout/loading-dots";
 import { useChatHandler } from "@/app/_hooks/ useChatHandler";
 
 /**
@@ -33,7 +33,7 @@ export function ChatArea() {
 
       <div className="sticky bottom-0 z-10 mx-auto w-full max-w-3xl">
         {isLoading && (
-          <div className="flex items-start gap-4 p-4">
+          <div className="flex justify-center gap-4 p-4">
             <LoadingDots />
           </div>
         )}
