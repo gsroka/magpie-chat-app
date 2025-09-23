@@ -131,6 +131,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 - [ ] **UI & Responsiveness:**
   - [ ] Implement a collapsible sidebar with a toggle icon for better mobile and tablet support.
   - [ ] Polish the UI and add responsive design for better user experience on mobile devices.
+  - [ ] toast notifications text color should be consistent with the rest of the UI.
 - [ ] **Expanded Profile Management:**
   - [ ] Add functionality to change the user's avatar and email address.
 - [ ] **Code Refactoring & Optimization:**

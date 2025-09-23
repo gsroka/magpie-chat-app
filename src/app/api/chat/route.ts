@@ -11,6 +11,12 @@ const SUPPORTED_IMAGE_TYPES = new Set<string>([
   "image/webp",
 ]);
 
+/**
+ * Creates a JSON response with an error message.
+ * @param message
+ * @param status
+ * @param details
+ */
 function createErrorResponse(
   message: string,
   status: number,
@@ -25,6 +31,11 @@ function createErrorResponse(
   );
 }
 
+/**
+ * Handles chat requests from the client.
+ * @param req
+ * @constructor
+ */
 export async function POST(req: Request) {
   try {
     const { messages } = (await req.json()) as {
@@ -35,26 +46,44 @@ export async function POST(req: Request) {
       return createErrorResponse("Missing messages array.", 400);
     }
 
-    // // Validate UI file parts
+    // Validate UI file parts
     for (const m of messages) {
       for (const part of m.parts ?? []) {
         if (part.type === "file") {
           if (!part.mediaType || !SUPPORTED_IMAGE_TYPES.has(part.mediaType)) {
-            throw new Error(
-              `Unsupported image format: ${part.mediaType ?? "unknown"}`,
+            const supportedFormats = Array.from(SUPPORTED_IMAGE_TYPES)
+              .map((t) => t.replace("image/", "").toUpperCase())
+              .join(", ");
+            return createErrorResponse(
+              "Unsupported File Type",
+              400,
+              `The provided file type ('${part.mediaType ?? "unknown"}') is not supported. Please upload one of the following formats: ${supportedFormats}.`,
             );
           }
+
           if (!part.url?.startsWith("data:")) {
-            throw new Error("Invalid image data URL");
+            return createErrorResponse(
+              "Invalid Image Data",
+              400,
+              "The image data URL is improperly formatted.",
+            );
           }
           const base64 = part.url.split(",", 2)[1];
           if (!base64) {
-            throw new Error("Invalid image data URL structure");
+            return createErrorResponse(
+              "Invalid Image Data",
+              400,
+              "The image data URL is missing its content.",
+            );
           }
-          const sizeBytes = Math.floor((base64.length * 3) / 4);
-          if (sizeBytes > MAX_FILE_SIZE_BYTES) {
-            throw new Error(
-              `Image too large. Maximum size: ${MAX_FILE_SIZE_MB}MB`,
+
+          const sizeInBytes = Math.floor((base64.length * 3) / 4);
+          if (sizeInBytes > MAX_FILE_SIZE_BYTES) {
+            const sizeInMb = (sizeInBytes / 1024 / 1024).toFixed(1);
+            return createErrorResponse(
+              "Image Too Large",
+              400,
+              `The image size (${sizeInMb}MB) exceeds the maximum limit of ${MAX_FILE_SIZE_MB}MB.`,
             );
           }
         }
@@ -75,9 +104,9 @@ export async function POST(req: Request) {
   } catch (error: unknown) {
     console.error("Error in chat API:", error);
     return createErrorResponse(
-      "An error occurred while processing your request.",
+      "An unexpected server error occurred.",
       500,
-      error instanceof Error ? error.message : "Unknown server error",
+      error instanceof Error ? error.message : "Unknown error details.",
     );
   }
 }

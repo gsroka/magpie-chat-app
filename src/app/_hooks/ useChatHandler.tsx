@@ -19,9 +19,23 @@ export function useChatHandler() {
 
   const { messages, sendMessage, status, error } = useChat({
     transport: new DefaultChatTransport({ api: "/api/chat" }),
-    onError: (error) => {
+    onError: (error: Error) => {
       console.error("Chat error:", error);
-      toast.error(error.message || "An unexpected error occurred.");
+      try {
+        // Attempt to parse the server's JSON error response
+        const errorData = JSON.parse(error.message) as {
+          error: string;
+          details?: string;
+        };
+        toast.error(errorData.error, {
+          description: errorData.details,
+        });
+      } catch (e) {
+        // Fallback for non-JSON errors
+        toast.error("An Error Occurred", {
+          description: error.message || "An unknown error occurred.",
+        });
+      }
     },
   });
 
@@ -112,7 +126,6 @@ export function useChatHandler() {
 
   return {
     messages,
-    error,
     isLoading: status === "streaming",
     input,
     attachmentPreview,

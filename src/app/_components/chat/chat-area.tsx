@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Paperclip, SendHorizonal, X } from "lucide-react";
 import Image from "next/image";
-import { toast } from "sonner";
 import { LoadingDots } from "@/app/_components/chat/loading-dots";
 import { useChatHandler } from "@/app/_hooks/ useChatHandler";
 
@@ -16,7 +15,6 @@ import { useChatHandler } from "@/app/_hooks/ useChatHandler";
 export function ChatArea() {
   const {
     messages,
-    error,
     isLoading,
     input,
     attachmentPreview,
@@ -26,10 +24,6 @@ export function ChatArea() {
     handleFormSubmit,
     removeAttachment,
   } = useChatHandler();
-
-  if (error) {
-    toast.error(error.message);
-  }
 
   return (
     <div className="flex h-full w-full flex-col items-center">
