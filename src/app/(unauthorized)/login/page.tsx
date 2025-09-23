@@ -1,8 +1,5 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useAuth } from "@/app/_context/AuthContext";
-import { useRouter } from "next/navigation";
 import {
   Card,
   CardContent,
@@ -14,31 +11,22 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Spinner from "@/app/_components/layout/spinner";
+import { useLoginForm } from "@/app/_hooks/useLoginForm";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("test@example.com");
-  const [password, setPassword] = useState("password123");
-  const [error, setError] = useState("");
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    error,
+    isLoading,
+    isAuthenticating,
+    handleLogin,
+  } = useLoginForm();
 
-  const { login, user, isInitialized } = useAuth();
-  const router = useRouter();
-  useEffect(() => {
-    if (isInitialized && user) {
-      router.push("/chat");
-    }
-  }, [user, isInitialized, router]);
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    try {
-      await login(email, password);
-    } catch (error) {
-      setError("Invalid email or password. Please try again.");
-    }
-  };
-
-  if (!isInitialized || user) {
+  // Show a full-screen spinner while checking auth, logging in, or redirecting.
+  if (isAuthenticating || isLoading) {
     return <Spinner />;
   }
 
@@ -75,7 +63,7 @@ export default function LoginPage() {
               />
             </div>
             {error && <p className="text-destructive text-sm">{error}</p>}
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full" disabled={isLoading}>
               Login
             </Button>
           </form>

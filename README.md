@@ -125,7 +125,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
   - [x] Implement PDF file support in the chat.
 - [ ] **Improved User Experience (UX):**
   - [ ] Implement a better error display system (e.g., using toasts) for API communication errors.
-  - [ ] Display a "Hello!" welcome message on the chat page when there are no messages.
+  - [x] Display a "Hello!" welcome message on the chat page when there are no messages.
   - [ ] Improve the loading spinner for a more polished and modern feel.
 - [ ] **UI & Responsiveness:**
   - [x] Implement a collapsible sidebar with a toggle icon for better mobile and tablet support.
