@@ -114,6 +114,10 @@ export function Sidebar() {
             <DropdownMenuLabel>{user?.name}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
+              <Link href="/chat">Chat</Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem asChild>
               <Link href="/profile">Profile</Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
@@ -121,7 +125,6 @@ export function Sidebar() {
               <LogOutIcon className="mr-2 h-4 w-4" />
               <span>Logout</span>
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
           </DropdownMenuContent>
         </DropdownMenu>
       </nav>
