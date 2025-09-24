@@ -1,7 +1,8 @@
 import { anthropic } from "@ai-sdk/anthropic";
 import { streamText, convertToModelMessages, type UIMessage } from "ai";
+import { env } from "@/env";
 
-const MODEL_NAME = "claude-3-5-sonnet-20240620";
+const MODEL_NAME = (env.AI_MODEL as string) ?? "claude-3-5-sonnet-20240620";
 const MAX_FILE_SIZE_MB = 5;
 const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
 const SUPPORTED_FILE_TYPES = new Set<string>([

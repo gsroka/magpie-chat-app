@@ -1,44 +1,104 @@
-# Magpie Chat App
+# 🦜 Magpie Chat App
 
 This is a web application built with Next.js and the Vercel AI SDK. The application features mocked authentication, a real-time streaming chat interface with an AI model, file/image attachment capabilities, and user profile management.
 
----
-
-### ✨ Features
-
-- **Mocked Authentication:** Login flow using hardcoded credentials.
-- **Real-time AI Chat:** A clean chat interface with real-time message streaming from a large language model.
-- **File & Image Support:** Attach images to your messages and get responses from a vision-enabled AI model.
-- **Profile Management:** View and edit your user profile name, with changes saved locally.
-- **Responsive Design:** Fully responsive UI that works on all screen sizes.
+![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)
+![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=flat-square&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-38B2AC?style=flat-square&logo=tailwind-css)
 
 ---
 
-### 🛠️ Tech Stack
+## ✨ Features
 
-- **Framework:** Next.js 15 & React 19
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS v4 & shadcn/ui
-- **Icons:** Lucide React
-- **AI Integration:** Vercel AI SDK
-- **State Management:** React Context & React Hooks
-- **Environment Variables:** T3 Env & Zod
-- **Tooling:** ESLint, Prettier, PNPM
+- 🔐 **Secure Authentication:** Server-side validation with HTTP-only cookies
+- 💬 **Real-time AI Chat:** Streaming responses powered by Anthropic Claude
+- 📎 **File & Image Support:** Attach images and PDFs to your messages
+- 👤 **Profile Management:** Customize your profile with persistent changes
+- 📱 **Responsive Design:** Beautiful UI that works on all devices
+- 🎨 **Modern Tech Stack:** Built with Next.js 15, React 19, and Tailwind CSS v4
 
 ---
 
-### 📁 Project Structure
+## 🚀 Quick Start
 
-```text
+### Prerequisites
+
+- Node.js 20+
+- pnpm 10+
+- Anthropic API key ([Get one here](https://console.anthropic.com/))
+
+### Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/gsroka/magpie-chat-app.git
+   cd magpie-chat-app
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   pnpm install
+   ```
+
+3. **Set up environment variables:**
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Then edit `.env` and add your Anthropic API key:
+
+   ```env
+   # AI Provider API Key (Required)
+   # Get your key at: https://console.anthropic.com/
+   ANTHROPIC_API_KEY="sk-ant-..."
+   
+   # Optional: Override the default model
+   # AI_MODEL="claude-3-5-sonnet-20240620"
+   ```
+
+4. **Run the development server:**
+
+   ```bash
+   pnpm dev
+   ```
+
+5. **Open your browser:**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+### Demo Credentials
+
+- **Email:** `test@example.com`
+- **Password:** `password123`
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** [Next.js 15](https://nextjs.org/) with App Router
+- **UI:** [Tailwind CSS v4](https://tailwindcss.com/) & [shadcn/ui](https://ui.shadcn.com/)
+- **AI:** [Vercel AI SDK](https://sdk.vercel.ai/) with Anthropic Claude
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **State:** React Context API
+- **Icons:** [Lucide React](https://lucide.dev/)
+
+---
+
+## 📁 Project Structure
+
+```
 magpie-chat-app/
 ├── src/
 │   ├── app/                # Next.js App Router
-│   │   ├── (authorized)/   # Protected routes group
+│   │   ├── (authorized)/   # Protected routes
 │   │   │   ├── chat/       # Chat interface page
 │   │   │   └── profile/    # User profile page
-│   │   ├── (unauthorized)/ # Client routes group
+│   │   ├── (unauthorized)/ # Public routes
 │   │   │   └── login/      # Login page
-│   │   ├── api/            # API route handlers
+│   │   ├── api/            # API endpoints
 │   │   │   └── chat/       # AI chat endpoint
 │   ├── _actions/           # Server actions
 │   │   └── auth.ts         # Authentication
@@ -48,7 +108,7 @@ magpie-chat-app/
 │   │   └── profile/
 │   ├── _config/            # Application configuration files
 │   │   └── nav.config.ts
-│   ├── _context/           # React Context providers
+│   ├── _context/           # React contexts
 │   │   └── AuthContext.tsx
 │   ├── _hooks/             # Custom React hooks
 │   │   ├── useChatHandler.tsx
@@ -72,162 +132,80 @@ magpie-chat-app/
 └── Configuration files     # Next.js, TypeScript, ESLint, etc.
 ```
 
-**Key Folders:**
+---
 
-- **`src/app/`**: Next.js 15 App Router with file-based routing
-- **`src/app/(authorized)/`**: Protected route group requiring authentication
-- **`src/components/`**: Reusable React components and shadcn/ui elements
-- **`src/lib/`**: Business logic, utilities, and type definitions
-- **`public/`**: Static assets (images, icons, etc.)
+## 🗺️ Development Roadmap
+
+<details>
+<summary><strong>View Full Roadmap</strong></summary>
+
+### ✅ Phase 1-6: Core Development (Completed)
+
+- Authentication system with server-side validation
+- Real-time AI chat with streaming
+- File/image attachment support
+- Profile management
+- Responsive UI with mobile support
+- Security hardening and architecture improvements
+
+### 🚧 Phase 7: Polish & Performance
+
+- [ ] Add message persistence with database integration
+- [ ] Implement conversation history and search
+- [ ] Add typing indicators and presence
+- [ ] Optimize bundle size and loading performance
+- [ ] Add comprehensive test coverage
+
+### 📋 Phase 8: Enhanced UX
+
+- [ ] Implement "New Chat" functionality
+- [ ] Add message actions (copy, edit, regenerate)
+- [ ] Syntax highlighting for code blocks
+- [ ] Keyboard shortcuts and power user features
+- [ ] Dark/light theme toggle
+
+### 🎯 Phase 9: Advanced Features
+
+- [ ] Multi-model support (GPT-4, Gemini, etc.)
+- [ ] Conversation branching and versioning
+- [ ] Export conversations (PDF, Markdown)
+- [ ] Custom system prompts and presets
+- [ ] Collaborative chat rooms
+
+### 🚀 Phase 10: Production Ready
+
+- [ ] User authentication with OAuth providers
+- [ ] Rate limiting and usage quotas
+- [ ] Admin dashboard and analytics
+- [ ] Deployment guides for Vercel/AWS/Docker
+- [ ] API documentation and SDK
+
+### 💡 Optional Enhancements
+
+- [ ] Speech-to-text and text-to-speech
+- [ ] Plugin system for custom tools
+- [ ] Mobile apps (React Native)
+- [ ] Real-time collaboration features
+
+</details>
 
 ---
 
-### 🚀 Getting Started
+## 📝 Scripts
 
-Follow these instructions to set up and run the project locally.
-
-#### 1. Prerequisites
-
-- Node.js (v20+)
-- pnpm
-
-#### 2. Installation & Setup
-
-1.  **Clone the repository from the bundle file:**
-
-    ```bash
-    git clone ai-chat-app.bundle ai-chat-app
-    cd ai-chat-app
-    ```
-
-2.  **Install dependencies:**
-
-    ```bash
-    pnpm install
-    ```
-
-3.  **Set up environment variables:**
-    Create a `.env` file in the root of the project and add your AI provider API key:
-
-    ```env
-    # Example for Anthropic
-    ANTHROPIC_API_KEY="your_api_key_here"
-    ```
-
-4.  **Run the development server:**
-    ```bash
-    pnpm run dev
-    ```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
-
-**Login Credentials:**
-
-- **Email:** `test@example.com`
-- **Password:** `password123`
+```bash
+pnpm dev          # Start development server
+pnpm build        # Build for production
+pnpm start        # Start production server
+pnpm lint         # Run ESLint
+pnpm format:write # Format code with Prettier
+pnpm typecheck    # Run TypeScript checks
+```
 
 ---
 
-### ✅ Project TODO Checklist
+## 📧 Contact
 
-#### Phase 0: Project Setup & Configuration
+Grzegorz Sroka - [@gsroka89](https://x.com/gsroka89)
 
-- [x] Initialize a project using `create-t3-app`.
-- [x] Install and configure libraries: `shadcn/ui`, `@ai-sdk`, and `lucide-react`.
-- [x] Set up the initial Git repository, and create a `README.md` file with a project description and setup instructions.
-- [x] Configure environment variables (`.env`) for the language model API key.
-
-#### Phase 1: Architecture, Routing & Typing
-
-- [x] Create the base application folder structure (e.g., `_components`, `_lib`, `_actions`).
-- [x] Define core application types in TypeScript (e.g., `User`, `Message`, `ChatMessage`).
-- [x] Implement the root layout (`layout.tsx`) and the layout for authorized users in the `(authorized)` route group.
-- [x] Create placeholder pages for `/login`, `/chat`, and `/profile`.
-- [x] Implement `loading.tsx`, `error.tsx`, and `not-found.tsx` files in key routing segments for better UX and error handling.
-- [x] Build shared navigation components (e.g., `Sidebar`) and implement active menu state logic.
-
-#### Phase 2: Mocked Authentication (with Server Actions)
-
-- [x] Create the login form on the `/login` page using `shadcn/ui` components.
-- [x] Implement `login` and `logout` logic.
-- [x] Use **React Context** (`AuthContext` + `AuthProvider`) for client-side session state management (storing the logged-in user object).
-- [x] Secure routes within the `(authorized)` group.
-
-#### Phase 3: Core Chat Interface (Text Streaming)
-
-- [x] Create an API Route Handler (`/api/chat/route.ts`) to handle communication with the Vercel AI SDK.
-- [x] Build the chat interface components: `ChatArea`, `MessageList`, `MessageInput`.
-- [x] Integrate the `useChat` hook from the `@ai-sdk` library to manage chat state, send messages, and handle response streaming.
-- [x] Implement loading indicators while the AI is generating a response.
-- [x] Style the interface and add auto-scrolling functionality to the latest message.
-- [x] Chat area position should be fixed at the bottom of the screen.
-- [x] Fix any potential type conversion errors between `UIMessage` and the AI SDK's `Message` during development.
-
-#### Phase 4: Advanced Features (Files & Profile)
-
-- [x] **Multimodal Chat:**
-  - [x] Extend the `MessageInput` component to support file (image) selection and display its preview.
-  - [x] Implement client-side logic for converting the image to Base64 format.
-  - [x] Update the API Route Handler (`/api/chat`) to handle multimodal messages (text + image).
-- [x] **Profile Management:**
-  - [x] Build the UI for the `/profile` page with a form for editing user data.
-  - [x] Implement persistence of profile data in `localStorage` so that changes are saved locally.
-  - [x] Ensure that profile changes are reactively reflected in other parts of the UI (e.g., in the `Header`).
-
-#### Phase 6: Refinements & Feature Expansion
-
-- [x] **Enhanced File Support:**
-  - [x] Implement PDF file support in the chat.
-- [x] **Improved User Experience (UX):**
-  - [x] Implement error display system using toasts for API communication errors.
-  - [x] Display a "Hello!" welcome message on the chat page when there are no messages.
-  - [x] Improve the loading spinner for a more polished and modern feel.
-- [ ] **UI & Responsiveness:**
-  - [x] Implement a collapsible sidebar with a toggle icon for better mobile and tablet support.
-  - [ ] Polish the UI and add responsive design for better user experience on mobile devices.
-  - [ ] toast notifications description text color should be consistent with the rest of the UI.
-- [ ] **Expanded Profile Management:**
-  - [ ] Add functionality to change the user's avatar and email address.
-- [ ] **Code Refactoring & Optimization:**
-  - [ ] Refactor components to better leverage React Server Components (RSC), minimizing client-side logic.
-  - [ ] Identify and abstract shared logic into reusable components to adhere to the DRY principle.
-- [x] **Code Refactoring & Optimization:**
-- [x] **Fixed Critical Security Issues:**
-  - [x] Moved authentication validation from client to server-side
-  - [x] Removed hardcoded credentials from client-visible code
-  - [x] Implemented secure session management with HTTP-only cookies
-- [x] **Fixed Architecture Violations:**
-  - [x] Converted authorized layout to Server Component
-  - [x] Removed unnecessary "use client" from layout components
-  - [x] Implemented proper server-side auth checks
-- [x] **Fixed State Management:**
-  - [x] Eliminated redundant state storage between localStorage and Context
-  - [x] Implemented single source of truth for user data
-  - [x] Simplified profile update logic
-- [ ] Identify and abstract more shared logic into reusable components to adhere to the DRY principle.
-
-#### Phase 7: Finalization & Submission
-
-- [ ] Conduct a full code review for **SOLID, DRY, KISS** principles, and **accessibility (a11y)**.
-- [ ] Add concise **JSDoc** comments to key components and functions.
-- [ ] Perform manual testing of all functionalities across different browsers and screen sizes (RWD).
-- [ ] Ensure the Git history is clean and follows the **Conventional Commits** convention.
-- [ ] Add transitions and animations to the application.
-- [ ] Submit the project bundle file.
-
-#### Phase 8: Advanced UX & Chat Utilities
-
-- [ ] **Chat Management:**
-  - [ ] Implement a "Start New Chat" button to clear the current conversation.
-- [ ] **Message Interaction & Formatting:**
-  - [ ] Add a "Copy" button to each message bubble for easy content copying.
-  - [ ] Implement syntax highlighting for code blocks within AI responses.
-  - [ ] Create a response navigation map/button to allow jumping between AI-generated answers in long conversations.
-- [ ] **Error Handling:**
-  - [ ] Enhance the root error boundary (`error.tsx`) to provide a "Refresh Page" option on application crash.
-- [ ] Add memoization to the chat handler to improve performance.
-- [ ] Add more comprehensive error boundaries.
-
-#### Optional Features
-
-- [ ] **[Optional] Speech-to-Text:** Implement message dictation functionality using the Web Speech API.
+Project Link: [https://github.com/gsroka/magpie-chat-app](https://github.com/gsroka/magpie-chat-app)

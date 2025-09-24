@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gsroka/magpie-chat-app.git"
+  },
+  "keywords": ["nextjs", "react", "tailwindcss", "typescript", "ai"],
+  "author": "Grzesztof Sroka",
+  "license": "MIT",
   "scripts": {
     "build": "next build",
     "check": "next lint && tsc --noEmit",
