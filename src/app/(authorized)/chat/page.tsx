@@ -1,7 +1,7 @@
 import { ChatArea } from "@/app/_components/chat/chat-area";
 
 /**
- * The main chat page.
+ * The Chat page.
  * @constructor
  */
 export default function ChatPage() {
